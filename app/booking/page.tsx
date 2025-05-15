@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function BookingPage() {
+function BookingForm() {
   const searchParams = useSearchParams();
   const dateFromParams = searchParams.get("date") || "";
 
@@ -339,5 +339,13 @@ Document/File: ${file ? file.name : "No file uploaded"}
         </div>
       </form>
     </div>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BookingForm />
+    </Suspense>
   );
 }
